@@ -4,7 +4,7 @@ import ApolloClient from 'apollo-client'
 
 const client = new ApolloClient({
   link: PrismicLink({
-    uri: 'https://marks-personal-website.prismic.io/graphql'
+    uri: 'https://marks-prismic-tutorial.prismic.io/graphql'
   }),
   cache: new InMemoryCache()
 })

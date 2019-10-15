@@ -4,7 +4,7 @@
       <nav class="container">
         <div class="navbar-brand">
           <n-link class="navbar-item" to="/">
-            <img class="logo" src="~assets/images/markperez_digital_black.png" alt="Mark Perez Digital" />
+            <img class="logo" src="~assets/images/nuxt_prismic.png" alt="Nuxt and Prismic" />
           </n-link>
 
           <!-- Navbar Burger -->
@@ -19,8 +19,6 @@
         <div id="navMenu" class="navbar-menu" :class="{ 'is-active': showNav }">
           <div @click="showNav = !showNav" class="navbar-end">
             <n-link class="navbar-item" to="/blog/">Blog</n-link>
-            <n-link class="navbar-item" to="/gear/">Gear</n-link>
-            <n-link class="navbar-item" to="/contact/">Contact</n-link>
           </div>
         </div>
       </nav>

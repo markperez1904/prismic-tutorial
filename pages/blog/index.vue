@@ -2,7 +2,6 @@
   <div class="container">
     <h1>{{ title }}</h1>
     <h2>{{ description }}</h2>
-    <!-- <p>❗ Blog page is under construction ❗</p> -->
 
     <!-- search bar -->
     <section class="field columns is-centered">
@@ -53,7 +52,7 @@ const queryPost = gql`
       lang: "en-us"
       fulltext: $fulltext
       sortBy: date_DESC
-      first: 9
+      first: 3
       after: $cursor
     ) {
       pageInfo {
@@ -81,7 +80,7 @@ export default {
     return {
       title: 'Blog',
       description:
-        'Welcome to my blog. Browse through a streamline of tech tutorials that suits your needs.',
+        'Welcome to the blog. Browse through a streamline of random posts.',
 
       keyword: '' // for searchPosts()
     }
@@ -95,36 +94,6 @@ export default {
           hid: 'description',
           name: 'description',
           content: this.description
-        },
-        {
-          hid: 'og:type', // open graph type
-          name: 'og:type',
-          content: 'blog'
-        },
-        {
-          hid: 'apple-mobile-web-app-title', // open graph mobile web app title
-          name: 'apple-mobile-web-app-title',
-          content: this.title
-        },
-        {
-          hid: 'og:title', // open graph title
-          name: 'og:title',
-          content: this.title
-        },
-        {
-          hid: 'og:description', // open graph description
-          name: 'og:description',
-          content: this.description
-        },
-        {
-          hid: 'og:url', // open graph url
-          name: 'og:url',
-          content: 'https://markperez.dev' + this.$route.fullPath
-        },
-        {
-          hid: 'og:image', // open graph image
-          name: 'og:image',
-          content: 'https://markperez.dev/_nuxt/img/588a4a6.png'
         }
       ]
     }
@@ -146,49 +115,9 @@ export default {
   },
 
   methods: {
-    loadMorePosts(searchTerm, currentCursor) {
-      this.$apollo.queries.allBlog_postss.fetchMore({
-        variables: {
-          fulltext: searchTerm,
-          cursor: currentCursor
-        },
+    loadMorePosts(searchTerm, currentCursor) {},
 
-        updateQuery: (previousResult, { fetchMoreResult }) => {
-          if (!fetchMoreResult) return previousResult
-
-          return {
-            allBlog_postss: Object.assign({}, fetchMoreResult.allBlog_postss, {
-              __typename: fetchMoreResult.allBlog_postss.__typename,
-              edges: previousResult.allBlog_postss.edges.concat(
-                fetchMoreResult.allBlog_postss.edges
-              ),
-              pageInfo: fetchMoreResult.allBlog_postss.pageInfo
-            })
-          }
-        }
-      })
-    },
-
-    searchPosts(searchTerm) {
-      this.$apollo.queries.allBlog_postss.fetchMore({
-        variables: {
-          fulltext: searchTerm,
-          cursor: ''
-        },
-
-        updateQuery: (previousResult, { fetchMoreResult }) => {
-          if (!fetchMoreResult) return previousResult
-
-          return {
-            allBlog_postss: Object.assign({}, fetchMoreResult.allBlog_postss, {
-              __typename: fetchMoreResult.allBlog_postss.__typename,
-              edges: [...fetchMoreResult.allBlog_postss.edges],
-              pageInfo: fetchMoreResult.allBlog_postss.pageInfo
-            })
-          }
-        }
-      })
-    }
+    searchPosts(searchTerm) {}
   }
 }
 </script>

@@ -1,24 +1,29 @@
-<template>
-  <div id="portfolio" class="hero is-light is-bold is-medium">
-    <h3 class="hero-head has-text-centered">Portfolio</h3>
-    <header class="hero-body container">
-      <app-portfolio></app-portfolio>
-    </header>
+ <template>
+  <div>
+    <section class="container">
+      <h1>{{title}}</h1>
+      <h2>{{description}}</h2>
+
+      <div class="content">
+        <li>Nuxt.js</li>
+        <li>Prismic.io</li>
+        <li>GraphQL</li>
+        <li>Apollo Client</li>
+      </div>
+
+    </section>
   </div>
 </template>
-
-<script>
-import Portfolio from '@/components/Portfolio.vue'
-
+ 
+ <script>
 export default {
   data() {
     return {
-      title: 'Mark Perez',
+      title: 'Sample Static Website',
       description:
-        'SEO Specialist and Self-learning enthusiast in technology. Producing content on YouTube.'
+        'This is a sample static website built with the following technologies.'
     }
   },
-
   head() {
     return {
       title: this.title,
@@ -27,51 +32,20 @@ export default {
           hid: 'description',
           name: 'description',
           content: this.description
-        },
-        {
-          hid: 'og:type', // open graph type
-          name: 'og:type',
-          content: 'website'
-        },
-        {
-          hid: 'apple-mobile-web-app-title', // open graph mobile web app title
-          name: 'apple-mobile-web-app-title',
-          content: this.title
-        },
-        {
-          hid: 'og:title', // open graph title
-          name: 'og:title',
-          content: this.title
-        },
-        {
-          hid: 'og:description', // open graph description
-          name: 'og:description',
-          content: this.description
-        },
-        {
-          hid: 'og:url', // open graph url
-          name: 'og:url',
-          content: 'https://markperez.dev' + this.$route.fullPath
-        },
-        {
-          hid: 'og:image', // open graph image
-          name: 'og:image',
-          content: 'https://markperez.dev/_nuxt/img/588a4a6.png'
         }
       ]
     }
-  },
-
-  components: {
-    'app-portfolio': Portfolio
   }
 }
 </script>
+ 
+ <style scoped>
+h1 {
+  font-size: 30px;
+  padding-top: 0.5rem;
+}
 
-<style scoped>
-.hero-head {
-  margin-top: 2rem;
-  font-size: 2.3rem;
-  letter-spacing: 15px;
+h2 {
+  margin: 2rem 0;
 }
 </style>

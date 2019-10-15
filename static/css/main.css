@@ -1,6 +1,6 @@
 /* Main font on website */
 body {
-  font-family: 'Oxygen', sans-serif;
+  font-family: 'Ubuntu', sans-serif;
   color: #2f495e; /* NuxtJS color scheme */
   touch-action: manipulation; /* This will disable double-tap zoom on mobile devices */
 }
@@ -8,7 +8,7 @@ body {
 /* Set monospace font for both <pre> and <code> */
 pre,
 code {
-  font-family: 'Oxygen Mono', monospace;
+  font-family: 'Ubuntu Mono', monospace;
   background-color: #2f495e; /* NuxtJS color scheme */
   color: #ffffff;
   font-size: 14px;

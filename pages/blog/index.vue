@@ -115,9 +115,50 @@ export default {
   },
 
   methods: {
-    loadMorePosts(searchTerm, currentCursor) {},
+    loadMorePosts(searchTerm, currentCursor) {
+      this.$apollo.queries.allBlog_postss.fetchMore({
+        variables: {
+          fulltext: searchTerm,
+          cursor: currentCursor
+        },
 
-    searchPosts(searchTerm) {}
+        updateQuery: (previousResult, { fetchMoreResult }) => {
+          if (!fetchMoreResult) return previousResult
+
+          return {
+            allBlog_postss: Object.assign({}, fetchMoreResult.allBlog_postss, {
+              __typename: fetchMoreResult.allBlog_postss.__typename,
+              edges: previousResult.allBlog_postss.edges.concat(
+                fetchMoreResult.allBlog_postss.edges
+              ),
+
+              pageInfo: fetchMoreResult.allBlog_postss.pageInfo
+            })
+          }
+        }
+      })
+    },
+
+    searchPosts(searchTerm) {
+      this.$apollo.queries.allBlog_postss.fetchMore({
+        variables: {
+          fulltext: searchTerm,
+          cursor: ''
+        },
+
+        updateQuery: (previousResult, { fetchMoreResult }) => {
+          if (!fetchMoreResult) return previousResult
+
+          return {
+            allBlog_postss: Object.assign({}, fetchMoreResult.allBlog_postss, {
+              __typename: fetchMoreResult.allBlog_postss.__typename,
+              edges: [...fetchMoreResult.allBlog_postss.edges],
+              pageInfo: fetchMoreResult.allBlog_postss.pageInfo
+            })
+          }
+        }
+      })
+    }
   }
 }
 </script>
